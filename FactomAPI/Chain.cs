@@ -11,9 +11,9 @@ using FactomAPI;
 namespace FactomAPI {
     public static class Chain {
         /// <summary>
-        /// Returns a chaintype object
+        /// Creates a new Chain
         /// </summary>
-        /// <param name="entry"></param>
+        /// <param name="entry">First entry in chain</param>
         /// <returns></returns>
         public static ChainType NewChain(DataStructs.EntryData entry) {
             var c = new ChainType();
@@ -31,9 +31,10 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Takes in an entry chain hash and returns Key MR of the first entry.
+        /// Takes in an entry chain hash and returns Key MR of the first entry. Can be used to 
+        /// get all the entries
         /// </summary>
-        /// <param name="hash">ChainID</param>
+        /// <param name="hash">ChainID of chain</param>
         /// <returns>KeyMR of first entry (last in list)</returns>
         public static DataStructs.ChainHeadData GetChainHead(byte[] hash) {
             var hashString = Arrays.ByteArrayToHex(hash);
@@ -51,9 +52,9 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Returns all the entries in an Entryblock. Type of entry has timestamp and entryhash value
+        /// Returns all the entries in a Chain. Type of entry has timestamp and entryhash value
         /// </summary>
-        /// <param name="chainHeadID">ChainID as string</param>
+        /// <param name="chainHeadID">ChainID of chain</param>
         /// <returns>List of all entrtries</returns>
         public static List<DataStructs.EntryBlockData.EntryData> GetAllChainEntries(byte[] chainHeadID) {
             var chainHead = GetChainHead(chainHeadID);
@@ -61,7 +62,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Returns all the entries in an Entryblock. Type of entry has timestamp and entryhash value
+        /// Returns all the entries in a Chain. Type of entry has timestamp and entryhash value
         /// </summary>
         /// <param name="chainHead">ChainHeadData type</param>
         /// <returns>List of all chain entries</returns>
@@ -79,11 +80,12 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// First method to add a chain to factom.
+        /// First method to add a chain to factom. Spends the entry credits, must wait 10seconds and call
+        /// RevealChain() to finalize the commit.
         /// </summary>
         /// <param name="c">Chain to be added</param>
-        /// <param name="name">Name of Entry  Credit wallet</param>
-        /// <returns>ChainID of chain added</returns>
+        /// <param name="name">Name of Entry Credit wallet</param>
+        /// <returns>ChainID of chain added, do not lose this!</returns>
         public static byte[] CommitChain(ChainType c, string name) {
             var byteList = new List<byte>();
 

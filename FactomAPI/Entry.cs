@@ -12,7 +12,7 @@ namespace FactomAPI {
         /// </summary>
         /// <param name="content">Content of Entry (message pack)</param>
         /// <param name="extIds">Unique Ids used for first entry of chain to construct a unique chain ID</param>
-        /// <param name="chainId">ChainID</param>
+        /// <param name="chainId">ChainID of chain</param>
         /// <returns>EntryData object</returns>
         public static DataStructs.EntryData NewEntry(byte[] content, byte[][] extIds, byte[] chainId) {
             var entry = new DataStructs.EntryData();
@@ -23,7 +23,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Returns an EntryBlockData
+        /// Returns an EntryBlock
         /// </summary>
         /// <param name="hash">Chainhead</param>
         /// <returns>EntryBlockData</returns>
@@ -33,7 +33,7 @@ namespace FactomAPI {
 
 
         /// <summary>
-        /// Returns an EntryBlockData
+        /// Returns an EntryBlock
         /// </summary>
         /// <param name="hash">String of KeyMr</param>
         /// <returns>EntryBlockData</returns>
@@ -52,7 +52,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///  Returns the data in an entry hash in a easier to use format.
+        ///  Returns the data of an entry.
         /// </summary>
         /// <param name="hash">Entry hash as EntryBlockData.entry</param>
         /// <returns>EntryData object</returns>
@@ -61,10 +61,10 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Returns the data in an entry hash in a easier to use format.
+        /// Returns the data of an entry.
         /// </summary>
         /// <param name="entryHash">Entryhash of entry</param>
-        /// <returns></returns>
+        /// <returns>The entry data</returns>
         public static DataStructs.EntryData GetEntryData(byte[] entryHash) {
             var req = new RestRequest("/entry-by-hash/{hash}", Method.GET);
             req.AddUrlSegment("hash", Arrays.ByteArrayToHex(entryHash));
@@ -75,11 +75,11 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        /// Commits an entry to the Factom blockchain. Must wait 10 seconds if succeeds then call RevealChain
+        /// Commits an entry to the Factom blockchain. Must wait 10 seconds if succeeds then call RevealEntry
         /// </summary>
         /// <param name="entry">Entry to be committed</param>
         /// <param name="name">Name of entry credit wallet</param>
-        /// <returns>ChainID</returns>
+        /// <returns>ChainID of commited Entry</returns>
         public static byte[] CommitEntry(DataStructs.EntryData entry, string name) {
             var byteList = new List<byte>();
 
