@@ -1,4 +1,6 @@
 # Factom C# API Implementation
+##Now on Nuget!
+
 
 What It can do:
 
@@ -66,7 +68,7 @@ So now you want to add more to an existing chain? Easy!
 ```cs
 // We have to make another Entry like before, but now we do not need the extIds.
 byte[] content = Encoding.UTF8.GetBytes("Some more content to add!");
-// Convert the chainID string into byte[] if its not already. I use a function I made, you can too.
+// Convert the chainID string into byte[] if it's not already. I use a function I made, you can too.
 // You can also use the chainID returned from the commit earlier.
 byte[] chainId = Strings.DecodeHexIntoBytes("HEX-STRING-HERE"); //Should be in hex, case does not matter
 var entry = Entry.NewEntry(content, null, chainId);
