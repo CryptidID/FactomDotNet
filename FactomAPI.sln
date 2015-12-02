@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactomAPITests", "FactomAPI
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ECD1F617-E2A6-4E0C-A8BC-B3C0E1E4FD0B}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
