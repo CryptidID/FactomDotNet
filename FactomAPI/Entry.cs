@@ -23,7 +23,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///     Returns an EntryBlockData
+        /// Returns an EntryBlockData
         /// </summary>
         /// <param name="hash">Chainhead</param>
         /// <returns>EntryBlockData</returns>
@@ -52,7 +52,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///     Returns the data in an entry hash in a easier to use format.
+        ///  Returns the data in an entry hash in a easier to use format.
         /// </summary>
         /// <param name="hash">Entry hash as EntryBlockData.entry</param>
         /// <returns>EntryData object</returns>
@@ -61,7 +61,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///     Returns the data in an entry hash in a easier to use format.
+        /// Returns the data in an entry hash in a easier to use format.
         /// </summary>
         /// <param name="entryHash">Entryhash of entry</param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///     Commits an entry to the Factom blockchain. Must wait 10 seconds if succeeds then call RevealChain
+        /// Commits an entry to the Factom blockchain. Must wait 10 seconds if succeeds then call RevealChain
         /// </summary>
         /// <param name="entry">Entry to be committed</param>
         /// <param name="name">Name of entry credit wallet</param>
@@ -119,7 +119,7 @@ namespace FactomAPI {
         }
 
         /// <summary>
-        ///     Second and final step in adding an entry to a chain on the factom blockchain
+        /// Second and final step in adding an entry to a chain on the factom blockchain
         /// </summary>
         /// <param name="entry">Entry to be added</param>
         /// <returns>Boolean true/false for success/failure</returns>

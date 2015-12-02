@@ -46,7 +46,7 @@ namespace FactomAPI {
                 var chainHead = JsonConvert.DeserializeObject<DataStructs.ChainHeadDataStringFormat>(resp.Content);
                 return DataStructs.ConvertStringFormatToByteFormat(chainHead);
             } catch (Exception) {
-                throw new FactomChainException("Error when serializing the chainhead. In GetChainHead: " + resp.Content);
+                throw new FactomEntryException("Error when serializing the chainhead. In GetChainHead: " + resp.Content);
             }
         }
 
