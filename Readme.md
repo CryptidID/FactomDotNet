@@ -1,5 +1,5 @@
 # Factom C# API Implementation
-##Now on Nuget!
+##Now on NuGet!
 
 
 What It can do:
