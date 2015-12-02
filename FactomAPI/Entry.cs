@@ -93,7 +93,7 @@ namespace FactomAPI {
             byteList.AddRange(Entries.HashEntry(entry));
 
             // 1 byte number of entry credits to pay
-            var cost = Entries.EntryCost(entry); // TODO: check errors
+            var cost = EntryCost(entry); // TODO: check errors
             byteList.Add(BitConverter.GetBytes(cost)[0]);
 
             var com = new WallerCommit();
@@ -140,6 +140,30 @@ namespace FactomAPI {
                 throw new FactomEntryException("Entry Reveal Failed. Message: " + resp.ErrorMessage);
             }
             return true;
+        }
+
+        /// <summary>
+        /// Caculates the cost of an entry
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
+        public static sbyte EntryCost(DataStructs.EntryData entry) {
+            var entryBinary = Entries.MarshalBinary(entry);
+            var len = entryBinary.Length - 35;
+            if (len > 10240) {
+                //Error, cannot be larger than 10kb
+                throw new ArgumentException("Parameter cannot exceed 10kb of content", nameof(entry));
+            }
+            var r = len % 1024;
+            var n = (sbyte)(len / 1024); // Capacity of Entry Payment
+
+            if (r > 0) {
+                n += 1;
+            }
+            if (n < 1) {
+                n = 1;
+            }
+            return n;
         }
 
         /// <summary>

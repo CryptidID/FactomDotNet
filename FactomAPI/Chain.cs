@@ -118,7 +118,7 @@ namespace FactomAPI {
             byteList.AddRange(Entries.HashEntry(c.FirstEntry));
 
             // 1 byte number of Entry Credits to pay
-            var cost = (sbyte) (Entries.EntryCost(entry) + 10); // TODO: check errors
+            var cost = (sbyte) (Entry.EntryCost(entry) + 10); // TODO: check errors
             byteList.Add(BitConverter.GetBytes(cost)[0]);
 
             var com = new WalletCommit();

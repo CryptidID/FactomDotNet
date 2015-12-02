@@ -26,6 +26,15 @@ byte[] content = Entry.GetEntryData(entries[index].Entryhash);
 ````
 
 ### Uploading Data To Factom
+#### Find the Cost First
+In the next two sections the creation of an entry is required. To get the cost of the entry, simply pass the created entry like so:
+```cs
+int cost = Entry.EntryCost(entry);
+```
+For commiting a chain add '10' to the cost.
+```cs
+cost += 10;
+```
 #### To Commit a Chain
 First we need to make a new Entry, as a first entry is required to make a chain.
 ```cs
@@ -85,7 +94,7 @@ Entry.RevealEntry(factomEntry);
 Some notes:
 - You can not "reserve a chain" as in anyone can add entries to your chains
 - This means you need to verify your entries
-
+- Entries cost 1 entry credit per kb
 
 ---
 

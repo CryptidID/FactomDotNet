@@ -18,16 +18,8 @@ namespace FactomAPI.Tests {
 
         [TestMethod()]
         public void GetChainHeadTest() {
-            byte[] x = Encoding.UTF8.GetBytes("475fbcef5e3a4e1621ed9a6fda5840c1d654715e55a8f5e514af0fb879ce0aec");
-
             var val = Strings.DecodeHexIntoBytes("475fbcef5e3a4e1621ed9a6fda5840c1d654715e55a8f5e514af0fb879ce0aec");
-
             var chainHead = Chain.GetChainHead(val);
-            var entries = Chain.GetAllChainEntries(x);
-
-            var y = Entry.GetEntryData(entries[1].EntryHash);
-            var i = y.Content;
-
             Assert.IsFalse(Bytes.Equality(chainHead.ChainHead, Encoding.UTF8.GetBytes("4c195ddcba466d2e15ce29d150c985bd7aaadaf881fa9a0abca0ee6ab07159f7")));
         }
 

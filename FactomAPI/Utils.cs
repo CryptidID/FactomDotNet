@@ -213,30 +213,6 @@ namespace FactomAPI {
                 // return Bytes.CheckEndian(bytes);
             }
         }
-
-        /// <summary>
-        ///     Caculates the cost of an entry
-        /// </summary>
-        /// <param name="entry"></param>
-        /// <returns></returns>
-        public static sbyte EntryCost(DataStructs.EntryData entry) {
-            var entryBinary = MarshalBinary(entry);
-            var len = entryBinary.Length - 35;
-            if (len > 10240) {
-                //Error, cannot be larger than 10kb
-                throw new ArgumentException("Parameter cannot exceed 10kb of content", nameof(entry));
-            }
-            var r = len%1024;
-            var n = (sbyte) (len/1024); // Capacity of Entry Payment
-
-            if (r > 0) {
-                n += 1;
-            }
-            if (n < 1) {
-                n = 1;
-            }
-            return n;
-        }
     }
 
     public static class Strings {
